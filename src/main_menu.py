@@ -4,6 +4,7 @@ import datetime
 import socket
 import psutil
 import math
+from subprocess import call
 
 def get_ip_addr():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -47,6 +48,14 @@ def draw_usage():
     ]
 
 
+def draw_shutdown():
+    return ["Shutdown", ""]
+
+def execute_shutdown():
+    call("sudo shutdown -h now", shell=True)
+    pass
+
+
 def get_main_menu():
     main_menu = Menu("Main")
 
@@ -62,9 +71,14 @@ def get_main_menu():
     date_time = MenuItem()
     date_time.set_handler(draw_current_time)
 
+    shutdown = MenuItem()
+    shutdown.set_handler(draw_shutdown)
+    shutdown.on_select(execute_shutdown)
+
     main_menu.add_item(hello_screen)
     main_menu.add_item(usage)
     main_menu.add_item(ip_addr)
     main_menu.add_item(date_time)
+    main_menu.add_item(shutdown)
     
     return main_menu
