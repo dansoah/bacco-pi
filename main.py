@@ -9,9 +9,9 @@ main_menu = get_main_menu()
 main_menu.first_item()
 
 lcd = LCD()
-btn_next = Button(26)
-btn_previous = Button(24)
-btn_confirm = Button(23)
+btn_next = Button(16, pull_up = True, bounce_time = 0.8)
+btn_previous = Button(20, pull_up = True, bounce_time = 0.8)
+btn_confirm = Button(21, pull_up = True, bounce_time = 0.8)
 buzzer = TonalBuzzer(19)
 
 def btn_next_press():
