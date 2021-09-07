@@ -4,6 +4,9 @@ from src.main_menu import get_main_menu
 from gpiozero import Button, TonalBuzzer
 from gpiozero.tones import Tone
 from time import sleep
+from signal import signal, SIGTERM, SIGHUP, pause
+import sys, traceback
+
 
 main_menu = get_main_menu()
 main_menu.first_item()
@@ -38,12 +41,45 @@ def btn_confirm_press():
     buzzer.stop()
     sleep(0.2)
 
+def hello():
+    lcd.clear()
+    sleep(0.6)
+    lcd.display_enabled = True
+    lcd.backlight_enabled = True
+
+def goodbye():
+    lcd.clear()
+    sleep(0.6)
+    lcd.display_enabled = False
+    lcd.backlight_enabled = False
+    sys.exit(1)
+
+signal(SIGTERM, goodbye)
+signal(SIGHUP, goodbye)
+
 btn_next.when_pressed = btn_next_press
 btn_previous.when_pressed = btn_previous_press
 btn_confirm.when_pressed = btn_confirm_press
 
-while True:
-    lines = main_menu.get_data()
-    lcd.text(lines[0], 1)
-    lcd.text(lines[1], 2)
+def main():
+    while True:
+        lines = main_menu.get_data()
+        lcd.text(lines[0], 1)
+        lcd.text(lines[1], 2)
+
+if __name__ == "__main__":
+    try:
+        hello()
+        main()
+    except KeyboardInterrupt:
+        print("Stopping due to keyboard iterruption")
+    except Exception:
+        print("Stopping due to an unhandled exception")
+        traceback.print_exc(file=sys.stdout)
+    goodbye()
+
+    
+
+
+    
 
