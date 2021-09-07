@@ -34,5 +34,8 @@ class Menu:
     def last_item(self):
         self.current_item = self.items[Len(items)]
 
+    def select_item(self):
+        return self.current_item.selected()
+
     def get_data(self):
         return self.current_item.get_info()

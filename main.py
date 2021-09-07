@@ -31,6 +31,8 @@ def btn_previous_press():
     sleep(0.2)
 
 def btn_confirm_press():
+    main_menu.select_item()
+
     buzzer.play(Tone(590.0))
     sleep(0.1)
     buzzer.stop()
