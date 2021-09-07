@@ -10,6 +10,8 @@ main_menu.first_item()
 
 lcd = LCD()
 btn_next = Button(26)
+btn_previous = Button(24)
+btn_confirm = Button(23)
 buzzer = TonalBuzzer(19)
 
 def btn_next_press():
@@ -18,6 +20,7 @@ def btn_next_press():
     buzzer.play(Tone(550.0))
     sleep(0.1)
     buzzer.stop()
+    sleep(0.2)
 
 def btn_previous_press():
     main_menu.previous_item()
@@ -25,15 +28,17 @@ def btn_previous_press():
     buzzer.play(Tone(510.0))
     sleep(0.1)
     buzzer.stop()
+    sleep(0.2)
 
 def btn_confirm_press():
-    main_menu.previous_item()
-
     buzzer.play(Tone(590.0))
     sleep(0.1)
     buzzer.stop()
+    sleep(0.2)
 
 btn_next.when_pressed = btn_next_press
+btn_previous.when_pressed = btn_previous_press
+btn_confirm.when_pressed = btn_confirm_press
 
 while True:
     lines = main_menu.get_data()
