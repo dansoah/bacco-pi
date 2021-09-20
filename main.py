@@ -1,17 +1,19 @@
 from rpi_lcd import LCD
 from gpiozero import Button
 from src.main_menu import get_main_menu
-from gpiozero import Button, TonalBuzzer
+from gpiozero import Button, TonalBuzzer, DigitalOutputDevice
 from gpiozero.tones import Tone
 from time import sleep
 from signal import signal, SIGTERM, SIGHUP, pause
 import sys, traceback
 
-
 main_menu = get_main_menu()
 main_menu.first_item()
 
 lcd = LCD()
+lcd_display_transistor = DigitalOutputDevice(26)
+lcd_display_transistor.on()
+
 btn_next = Button(16, pull_up = True, bounce_time = 0.8)
 btn_previous = Button(20, pull_up = True, bounce_time = 0.8)
 btn_confirm = Button(21, pull_up = True, bounce_time = 0.8)
@@ -49,6 +51,7 @@ def hello():
 
 def goodbye():
     lcd.clear()
+    lcd_display_transistor.off()
     sleep(0.6)
     lcd.display_enabled = False
     lcd.backlight_enabled = False
