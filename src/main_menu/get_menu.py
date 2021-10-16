@@ -1,5 +1,4 @@
 from src.menu.menu import Menu
-from src.menu.menu_item import MenuItem
 from src.main_menu.ip_addr_item import get_item as get_ip_addr_item
 from src.main_menu.shutdown_item import get_item as get_shutdown_item
 from src.main_menu.resource_usage_item import get_item as get_usage_item
