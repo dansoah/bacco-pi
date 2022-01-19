@@ -11,7 +11,7 @@ main_menu = get_main_menu()
 main_menu.first_item()
 
 lcd = LCD()
-lcd_display_transistor = DigitalOutputDevice(26)
+lcd_display_transistor = DigitalOutputDevice(12)
 lcd_display_transistor.on()
 
 btn_next = Button(16, pull_up = True, bounce_time = 0.8)
