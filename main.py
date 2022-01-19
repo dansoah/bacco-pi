@@ -1,6 +1,6 @@
 from rpi_lcd import LCD
 from gpiozero import Button
-from src.main_menu import get_main_menu
+from src.main_menu.get_menu import get_main_menu
 from gpiozero import Button, TonalBuzzer, DigitalOutputDevice
 from gpiozero.tones import Tone
 from time import sleep
