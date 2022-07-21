@@ -1,6 +1,6 @@
 from rpi_lcd import LCD
 from gpiozero import Button
-from src.main_menu import get_main_menu
+from src.main_menu.get_menu import get_main_menu
 from gpiozero import Button, TonalBuzzer, DigitalOutputDevice
 from gpiozero.tones import Tone
 from time import sleep
@@ -11,7 +11,7 @@ main_menu = get_main_menu()
 main_menu.first_item()
 
 lcd = LCD()
-lcd_display_transistor = DigitalOutputDevice(26)
+lcd_display_transistor = DigitalOutputDevice(12)
 lcd_display_transistor.on()
 
 btn_next = Button(16, pull_up = True, bounce_time = 0.8)
